@@ -1,5 +1,6 @@
 //
 // Created by Manju Muralidharan on 10/19/25.
+// Working on by Duc Le on 10/20/2025
 //
 #include <iostream>
 #include <fstream>
@@ -34,6 +35,7 @@ int main() {
     // Step 3: Build encoding tree using your heap
     int root = buildEncodingTree(nextFree);
 
+    printf("root: %d\n", root);
     // Step 4: Generate binary codes using an STL stack
     string codes[26];
     generateCodes(root, codes);
@@ -98,7 +100,42 @@ int buildEncodingTree(int nextFree) {
     //    - Set left/right pointers
     //    - Push new parent index back into the heap
     // 4. Return the index of the last remaining node (root)
-    return -1; // placeholder
+    //  return -1; // placeholder
+
+                                    // CODE WORK //
+    MinHeap heap; //declare heap
+
+    // push all leaf indinces into the heap
+    for (int i =0 ;i <nextFree; ++i)
+        heap.push(i,weightArr);
+    // handle single-char case
+    if (heap.size ==1 )
+        return heap.pop(weightArr);
+
+    int curFree = nextFree;
+
+    // Combine until only one root remains
+    while (heap.size > 1) {
+        int left = heap.pop(weightArr);
+        int right = heap.pop(weightArr);
+
+        weightArr[curFree] = weightArr[left] + weightArr[right];
+        charArr[curFree] = '\0';
+        leftArr[curFree] = left;
+        rightArr[curFree] = right;
+
+        heap.push(curFree, weightArr);
+        curFree++;
+    }
+
+    cout <<  "Build encoding tree successfully.\n";
+
+    // Final root
+    return heap.pop(weightArr);
+
+
+
+
 }
 
 // Step 4: Use an STL stack to generate codes

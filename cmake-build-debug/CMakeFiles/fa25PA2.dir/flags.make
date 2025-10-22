@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/Users/admin/Desktop/CS210-05/fa25PA2/.
+CXX_INCLUDES = -I/Users/admin/Desktop/CS210-05/CS210PA2fa25/.
 
 CXX_FLAGS = -g -fcolor-diagnostics
 

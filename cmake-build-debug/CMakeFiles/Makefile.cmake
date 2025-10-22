@@ -36,7 +36,7 @@ set(CMAKE_MAKEFILE_DEPENDS
   "/Applications/CLion.app/Contents/bin/cmake/mac/x64/share/cmake-4.0/Modules/Platform/Linker/Apple-C.cmake"
   "/Applications/CLion.app/Contents/bin/cmake/mac/x64/share/cmake-4.0/Modules/Platform/Linker/Apple-CXX.cmake"
   "/Applications/CLion.app/Contents/bin/cmake/mac/x64/share/cmake-4.0/Modules/Platform/UnixPaths.cmake"
-  "/Users/admin/Desktop/CS210-05/fa25PA2/CMakeLists.txt"
+  "/Users/admin/Desktop/CS210-05/CS210PA2fa25/CMakeLists.txt"
   "CMakeFiles/4.0.2/CMakeCCompiler.cmake"
   "CMakeFiles/4.0.2/CMakeCXXCompiler.cmake"
   "CMakeFiles/4.0.2/CMakeSystem.cmake"

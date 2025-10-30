@@ -35,13 +35,15 @@ int main() {
     // Step 3: Build encoding tree using your heap
     int root = buildEncodingTree(nextFree);
 
-    printf("root: %d\n", root);
+
     // Step 4: Generate binary codes using an STL stack
     string codes[26];
     generateCodes(root, codes);
 
     // Step 5: Encode the message and print output
     encodeMessage("input.txt", codes);
+
+   // cout <<"root:"<<root << " " <<"code:"<< codes << endl;
 
     return 0;
 }
@@ -67,6 +69,7 @@ void buildFrequencyTable(int freq[], const string& filename) {
         // Count only lowercase letters
         if (ch >= 'a' && ch <= 'z')
             freq[ch - 'a']++;
+         // cout << ch; // <-- print each valid character
     }
     file.close();
 
@@ -144,6 +147,27 @@ void generateCodes(int root, string codes[]) {
     // Use stack<pair<int, string>> to simulate DFS traversal.
     // Left edge adds '0', right edge adds '1'.
     // Record code when a leaf node is reached.
+    if (root ==-1 ) return;
+
+    stack <pair<int, string>>st;
+    st.push({root,""});
+    while (!st.empty()) {
+        pair<int, string> cur = st.top();
+        st.pop();
+        int node = cur.first;
+        string path = cur.second;
+
+        // Leaf node
+        if (leftArr[node] == -1 && rightArr[node] == -1) {
+            if (charArr[node] >= 'a' && charArr[node] <= 'z') {
+                codes[charArr[node] - 'a'] = (path.empty() ? "0" : path);
+            }
+        } else {
+            // Traverse right with '1', left with '0'
+            if (rightArr[node] != -1) st.push({rightArr[node], path + "1"});
+            if (leftArr[node] != -1)  st.push({leftArr[node], path + "0"});
+        }
+    }
 
 
 }
@@ -153,7 +177,7 @@ void encodeMessage(const string& filename, string codes[]) {
     cout << "\nCharacter : Code\n";
     for (int i = 0; i < 26; ++i) {
         if (!codes[i].empty())
-            cout << char('a' + i) << " : " << codes[i] << "\n";
+            cout << char('a' + i) << "\t\t  : " << codes[i] << "\n";
     }
 
     cout << "\nEncoded message:\n";

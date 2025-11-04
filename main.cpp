@@ -46,6 +46,8 @@ int main() {
    // cout <<"root:"<<root << " " <<"code:"<< codes << endl;
 
     return 0;
+
+
 }
 
 /*------------------------------------------------------
@@ -174,6 +176,7 @@ void generateCodes(int root, string codes[]) {
 
 // Step 5: Print table and encoded message
 void encodeMessage(const string& filename, string codes[]) {
+    // getting char and the code //
     cout << "\nCharacter : Code\n";
     for (int i = 0; i < 26; ++i) {
         if (!codes[i].empty())
